@@ -1,7 +1,6 @@
 import threading
 import time
 import click
-import sys
 
 
 def user_input(input_buffer_size=10):
@@ -20,7 +19,6 @@ thread_user_input.start()
 while True:
     print(cmd)
     if cmd and cmd[-1] == 'q':
-        sys.exit()
         break
     # cmd = []
     time.sleep(0.1)
