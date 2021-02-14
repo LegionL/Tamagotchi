@@ -1,7 +1,7 @@
 # Tamagotchi
 
 
-### Download ⬇
+### Download 
 
 Open your Terminal and run:
 
