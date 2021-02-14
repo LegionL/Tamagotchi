@@ -57,7 +57,6 @@ class Cat(Pet):
         self.state = State.AWAKE
 
         self.stage = None
-        self.poop_sensor = False
         self.poop_updated_time = t0
 
     def gain_age(self, diff=1):
@@ -71,19 +70,23 @@ class Cat(Pet):
             self.food = max(0, min(self.food, self.max_food))
             self.food_updated_time = time.time()
             if diff > 0:
-                self.stage.add_notifications(f'[Eat]     {self.__class__.__name__} eats some catfood')
+                self.stage.add_notifications(
+                    '[Eat]     Cat eats some catfood')
         else:
-            self.stage.add_notifications(f'[Eat]     Failed. the {self.__class__.__name__} is sleeping.')
- 
+            self.stage.add_notifications(
+                '[Eat]     Failed. Cat is sleeping')
+
     def drink(self, diff=1):
         if diff < 0 or self.state == State.AWAKE:
             self.water = self.water + int(diff)
             self.water = max(0, min(self.water, self.max_water))
             self.water_updated_time = time.time()
             if diff > 0:
-                self.stage.add_notifications(f'[Drink]   {self.__class__.__name__} drinks some water')
+                self.stage.add_notifications(
+                    '[Drink]   Cat drinks some water')
         else:
-            self.stage.add_notifications(f'[Drink]   Failed. the {self.__class__.__name__} is sleeping.')
+            self.stage.add_notifications(
+                '[Drink]   Failed. Cat is sleeping')
 
     def gain_energy(self, diff=1):
         self.energy = self.energy + int(diff)
@@ -97,8 +100,8 @@ class Cat(Pet):
 
     def update(self, ):
         if self.state == State.DEAD:
-            self.stage.add_notifications(f'[Dead]   the {self.__class__.__name__} dies.')
-            return -1 
+            self.stage.add_notifications('[Dead]   Cat dies')
+            return -1
 
         t0 = time.time()
 
@@ -113,7 +116,7 @@ class Cat(Pet):
             self.eat(-diff)
 
         # thirst
-        diff, _ = divmod(t0 - self.water_updated_time, 20 )
+        diff, _ = divmod(t0 - self.water_updated_time, 20)
         if diff != 0:
             self.drink(-diff)
 
@@ -131,7 +134,7 @@ class Cat(Pet):
         if diff != 0:
             self.poop()
 
-        diff, _ = divmod(t0 - self.health_updated_time, 20 )
+        diff, _ = divmod(t0 - self.health_updated_time, 20)
         if diff != 0:
             if self.food >= 5 or self.water >= 5:
                 self.gain_health(diff)
@@ -140,7 +143,7 @@ class Cat(Pet):
 
         if self.health <= 0 or self.age >= 20:
             self.die()
-        if self.energy <=4:
+        if self.energy <= 4:
             self.sleep()
         elif self.energy >= 8:
             self.wake_up()
@@ -152,23 +155,27 @@ class Cat(Pet):
         if self.state == State.AWAKE:
             self.stage.items.append('poop')
             if forced:
-                self.stage.add_notifications(f'[Poop]    the {self.__class__.__name__} poops RELUCTANTLY.')
+                self.stage.add_notifications(
+                    '[Poop]    the Cat poops RELUCTANTLY.')
             else:
-                self.stage.add_notifications(f'[Poop]    the {self.__class__.__name__} poops.')
+                self.stage.add_notifications(
+                    '[Poop]    the Cat poops.')
         else:
-            self.stage.add_notifications(f'[Poop]    Failed. the {self.__class__.__name__} is sleeping.')
+            self.stage.add_notifications(
+                '[Poop]    Failed. the Cat is sleeping.')
         self.poop_updated_time = time.time()
 
     def sleep(self, ):
         if self.state != State.SLEEP:
             self.state = State.SLEEP
-            self.stage.add_notifications(f'[Sleep]   the {self.__class__.__name__} sleeps.')
+            self.stage.add_notifications('[Sleep]   Cat sleeps.')
 
     def wake_up(self, ):
         if self.state != State.AWAKE:
             self.state = State.AWAKE
-            self.stage.add_notifications(f'[Wake up] the {self.__class__.__name__} wakes up.')
+            self.stage.add_notifications('[Wake up] Cat wakes up.')
 
     def __str__(self, ):
-        return f'Cat State: {self.state.name}  Age: {self.age}  Health: {self.health}  '\
+        return f'Cat State: {self.state.name}  Age: {self.age}  '\
+               f'Health: {self.health}  '\
                f'Food: {self.food}  Water: {self.water}  Energy: {self.energy}'
