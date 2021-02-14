@@ -114,6 +114,12 @@ class TestSum(unittest.TestCase):
         self.pet.update()
         self.assertEqual(self.pet.energy, 6)
 
+    def test_poop(self):
+        self.assertEqual('poop' in self.stage.items, False)
+        self.pet.poop_updated_time = self.pet.poop_updated_time - 20
+        self.pet.update()
+        self.assertEqual('poop' in self.stage.items, True)
+
 
 if __name__ == '__main__':
 
