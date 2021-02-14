@@ -1,3 +1,4 @@
+from Pet import *
 import threading
 import time
 import click
@@ -16,9 +17,12 @@ thread_user_input = threading.Thread(target=user_input)
 thread_user_input.daemon = True
 thread_user_input.start()
 
+stage = []
+c = Cat()
+stage.append(c)
 while True:
     print(cmd)
     if cmd and cmd[-1] == 'q':
         break
-    # cmd = []
+    cmd = []
     time.sleep(0.1)
