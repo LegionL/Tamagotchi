@@ -26,3 +26,4 @@ Open your terminal and run:
 `py Tamagotchi.py`
 
 Good Luck! Have Fun!
+![alt text](https://github.com/LegionL/Tamagotchi/blob/main/screenshot.jpg)
