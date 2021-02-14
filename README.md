@@ -17,7 +17,7 @@ Open your terminal and run:
 
 Open your terminal and run:
 
-`py test.py`
+`py test.py -b`
 
 ### Run Game
 

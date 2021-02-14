@@ -20,12 +20,12 @@ class Stage:
 
     def draw(self, ):
         clear_command_line()
-        print('\n'.join(self.notifications + ['\n' + '-' * 20 + '\n']))
+        print('\n\r'.join(self.notifications + ['\n\r' + '-' * 20 + '\n\r']))
         self.prompt()
 
     def prompt(self, ):
         print('1 - Show Status   2 - Eat   3 - Drink   '
-              '4 - Clean   5 - Poop   6 - Sleep   q - Quit\n')
+              '4 - Clean   5 - Poop   6 - Sleep   q - Quit\n\r')
 
 
 def user_input(input_buffer_size=1):
