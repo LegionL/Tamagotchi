@@ -124,7 +124,7 @@ class Cat(Pet):
 
         # lose/gain energy
         if self.state != State.SLEEP:
-            diff, _ = divmod(t0 - self.energy_updated_time, 5)
+            diff, _ = divmod(t0 - self.energy_updated_time, 10)
             if diff != 0:
                 self.gain_energy(-diff)
         else:

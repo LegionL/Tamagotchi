@@ -25,7 +25,7 @@ class Stage:
 
     def prompt(self, ):
         print('1 - Show Status   2 - Eat   3 - Drink   '
-              '4 - Clean   5 - Poop   q - Quit\n')
+              '4 - Clean   5 - Poop   6 - Sleep   q - Quit\n')
 
 
 def user_input(input_buffer_size=1):
@@ -68,6 +68,8 @@ def main():
                 f'[Clean]   {prev - len(stage.items)} poop cleaned')
         elif cmd == '5':
             pet.poop(forced=True)
+        elif cmd == '6':
+            pet.sleep()
 
         cmd = None
 
