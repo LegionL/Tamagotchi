@@ -7,7 +7,7 @@ Open your Terminal and run:
 
 `git clone git@github.com:LegionL/Tamagotchi.git`
 
-### Install requirements
+### Install Requirements
 
 Open your terminal and run:
 
