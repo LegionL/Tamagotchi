@@ -33,6 +33,8 @@ class Stage:
         print(f'1 - Show Status  2 - Eat  3 - Drink  4 - Play  '\
               f'5 - Clean  6 - Poop  q - Quit\n')
 
+    def game(self, ):
+        pass
 
 def user_input(input_buffer_size=1):
     global cmd
@@ -54,26 +56,26 @@ stage = Stage()
 pet = Cat()
 stage.items.append(pet)
 pet.stage = stage
-stage.add_notifications('Generating a cat')
+stage.add_notifications('[System]  Generating a cat')
 
 stage.draw()
 while True:
     if cmd == 'q':
         break
     elif cmd == '1':
-        stage.add_notifications(f'[Status] {pet}') 
+        stage.add_notifications(f'[Status]  {pet}') 
     elif cmd == '2':
         pet.eat()
-        stage.add_notifications(f'[Eat]    {pet.__class__.__name__} eats a can of catfood')
+        
     elif cmd == '3':
         pet.drink()
-        stage.add_notifications(f'[Drink]  {pet.__class__.__name__} drinks some water')
+        
     elif cmd == '4':
         pass
     elif cmd == '5':
         prev = len(stage.items)
         stage.items = [i for i in stage.items if i != 'poop']
-        stage.add_notifications(f'[Clean]  {prev - len(stage.items)} poop cleaned')
+        stage.add_notifications(f'[Clean]   {prev - len(stage.items)} poop cleaned')
     elif cmd == '6':
         pet.poop(forced=True)
 
@@ -82,7 +84,7 @@ while True:
     for i in stage.items:
         if isinstance(i, Pet):
             if i.update() == -1:
-                stage.add_notifications(f'[System] will exit in 3 seconds...')
+                stage.add_notifications(f'[System]  will exit in 3 seconds...')
                 time.sleep(3)
                 sys.exit()
     
