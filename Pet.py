@@ -32,28 +32,30 @@ class Pet(ABC):
 
 
 class Cat(Pet):
-    def __init__(self, ):
+    def __init__(self, health=10, max_health=100, food=5, max_food=10,
+                 water=5, max_water=10, energy=5, max_energy=10,
+                 age_upper_limit=20):
         t0 = time.time()
         self.age = 0
         self.age_updated_time = t0
+        self.age_upper_limit = age_upper_limit
 
-        self.health = 10
-        self.max_health = 100
+        self.health = health
+        self.max_health = max_health
         self.health_updated_time = t0
 
-        self.food = 5
-        self.max_food = 10
+        self.food = food
+        self.max_food = max_food
         self.food_updated_time = t0
 
-        self.water = 5
-        self.max_water = 10
+        self.water = water
+        self.max_water = max_water
         self.water_updated_time = t0
 
-        self.energy = 5
-        self.max_energy = 10
+        self.energy = energy
+        self.max_energy = max_energy
         self.energy_updated_time = t0
 
-        self.location = None
         self.state = State.AWAKE
 
         self.stage = None
@@ -61,7 +63,7 @@ class Cat(Pet):
 
     def gain_age(self, diff=1):
         self.age = self.age + int(diff)
-        self.age = max(0, self.age)
+        self.age = min(max(0, self.age), self.age_upper_limit)
         self.age_updated_time = time.time()
 
     def eat(self, diff=1):
@@ -141,7 +143,7 @@ class Cat(Pet):
             else:
                 self.gain_health(-diff)
 
-        if self.health <= 0 or self.age >= 20:
+        if self.health <= 0 or self.age >= self.age_upper_limit:
             self.die()
         if self.energy <= 4:
             self.sleep()
