@@ -13,11 +13,12 @@ Open your terminal and run:
 
 `pip install -r requirements.txt`
 
-### Run Tests
+### Run Tests and Lint
 
 Open your terminal and run:
 
 `py test.py -b`
+`flake8`
 
 ### Run Game
 
